@@ -19,6 +19,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="headline">{{item.username}}</v-list-item-title>
+              <v-list-item-subtitle>共{{item.picArr.length}}图</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
@@ -51,7 +52,7 @@ export default {
   data: () => {
     return {
       page: 1,
-      isShow: false,
+      isShow: true,
       isDialogShow: false
     };
   },
@@ -85,6 +86,10 @@ export default {
       this.$store.commit("setPictureList", {
         pictureList: result
       });
+      scrollTo({
+        left: 0,
+        top: 0
+      });
     }
   },
   async created() {
@@ -92,6 +97,7 @@ export default {
       title: "主页"
     });
     if (this.$store.state.pictureList.length === 0) {
+      this.isShow = false;
       let result = await backend.get(
         "https://api.coolapk.com/v6/picture/list?page=1"
       );

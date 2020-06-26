@@ -53,6 +53,10 @@ export default {
     }
   },
   created() {
+    scrollTo({
+      left: 0,
+      top: 0
+    });
     this.$store.commit("setTitle", {
       title: "图集"
     });
