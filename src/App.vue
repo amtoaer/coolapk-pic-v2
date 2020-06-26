@@ -1,60 +1,34 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <meta name="referrer" content="no-referrer" />
+    <v-app-bar app max-height="55">
+      <v-btn icon class="hidden-xs-only">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+      <v-btn icon class="hidden-xs-only" @click="$router.go(-1)">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+      <v-btn icon class="hidden-xs-only" @click="$router.push('config')">
+        <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+    <v-main>
+      <v-container fluid fill-height>
+        <router-view />
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
+  name: "App",
+  computed: {
+    title() {
+      return this.$store.state.title;
+    }
+  }
 };
 </script>
