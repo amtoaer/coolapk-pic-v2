@@ -1,6 +1,7 @@
 import md5 from 'js-md5'
 const request = require('request-promise')
 const fs = require('fs')
+const path = require('path')
 
 function getToken() {
     const device_ID = "8513efac-09ea-3709-b214-95b366f1a185"
@@ -41,21 +42,22 @@ export default {
     get(url) {
         return getJson(url)
     },
-    async download(picUrl) {
+    async download(picUrl, id, num, downloadPath) {
         try {
             await request({
                 url: picUrl,
                 resolveWithFullResponse: true
-            }).pipe(fs.createWriteStream("/home/amtoaer/a.jpg"));
+            }).pipe(fs.createWriteStream(path.join(`${downloadPath}`, `${id}_${num}.jpg`)));
             return true
         } catch (e) {
             console.log(e)
             return false
         }
     },
-    downloadAll(picUrlList) {
-        for (let picUrl of picUrlList) {
-            let tmp = this.download(picUrl)
+    downloadAll(picUrlList, downloadPath) {
+        let length = picUrlList.picArr.length
+        for (let i = 0; i < length; i++) {
+            let tmp = this.download(picUrlList.picArr[i], picUrlList.id, i + 1, downloadPath)
             if (!tmp) {
                 return false
             }

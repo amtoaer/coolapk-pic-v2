@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain, dialog } from 'electron'
 app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors');
 import {
   createProtocol,
@@ -91,3 +91,11 @@ if (isDevelopment) {
     })
   }
 }
+// change save path
+ipcMain.on('openDialog', function (event, p) {
+  let result = dialog.showOpenDialogSync({ properties: [p] })
+  if (result) {
+    event.sender.send('selectedItem', result[0])
+  }
+
+})

@@ -19,6 +19,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="headline">{{item.username}}</v-list-item-title>
+              <v-list-item-subtitle>共{{item.picArr.length}}图</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
@@ -33,7 +34,7 @@
           <v-card-actions>
             <v-btn text color="deep-purple accent-4" @click="getDetail(item)">详情</v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon @click="downloadAll(item.picArr)">
+            <v-btn icon @click="downloadAll(item)">
               <v-icon>mdi-download</v-icon>
             </v-btn>
           </v-card-actions>
@@ -51,7 +52,7 @@ export default {
   data: () => {
     return {
       page: 1,
-      isShow: false,
+      isShow: true,
       isDialogShow: false
     };
   },
@@ -66,7 +67,7 @@ export default {
       this.$router.push("Detail");
     },
     downloadAll(picUrlList) {
-      let result = backend.downloadAll(picUrlList);
+      let result = backend.downloadAll(picUrlList, this.$store.state.savePath);
       if (result) {
         this.isDialogShow = true;
       }
@@ -85,6 +86,10 @@ export default {
       this.$store.commit("setPictureList", {
         pictureList: result
       });
+      scrollTo({
+        left: 0,
+        top: 0
+      });
     }
   },
   async created() {
@@ -92,6 +97,7 @@ export default {
       title: "主页"
     });
     if (this.$store.state.pictureList.length === 0) {
+      this.isShow = false;
       let result = await backend.get(
         "https://api.coolapk.com/v6/picture/list?page=1"
       );
