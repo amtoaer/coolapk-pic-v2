@@ -53,15 +53,15 @@
 
 1. 主页（点击`详情`进入详情页，点击`下载`进行图集批量下载）
 
-   ![image-20200627002453398](https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/image-20200627002453398.png)
+   ![image-20200627002453398](static/image-20200627002453398.png)
 
 2. 详情（点击单张图片任意位置即可开始下载）
 
-   ![image-20200627002606657](https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/image-20200627002606657.png)
+   ![image-20200627002606657](static/image-20200627002606657.png)
 
 3. 设置（保存路径默认为用户文件夹）
 
-   ![image-20200627002659937](https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/image-20200627002659937.png)
+   ![image-20200627002659937](static/image-20200627002659937.png)
 
 ## 感谢
 
