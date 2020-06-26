@@ -1,4 +1,6 @@
-<img src="https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/106_4f347ac7531e6dc877fd7b084a531240_con.png" height="80"></img>
+<p align="center">
+    <img src="https://allwens-work.oss-cn-beijing.aliyuncs.com/bed/106_4f347ac7531e6dc877fd7b084a531240_con.png" height="80"></img>
+</p>
 
 <h1 align="center">
     酷安酷图客户端
