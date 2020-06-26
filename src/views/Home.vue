@@ -33,7 +33,7 @@
           <v-card-actions>
             <v-btn text color="deep-purple accent-4" @click="getDetail(item)">详情</v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon @click="downloadAll(item.picArr)">
+            <v-btn icon @click="downloadAll(item)">
               <v-icon>mdi-download</v-icon>
             </v-btn>
           </v-card-actions>
@@ -66,7 +66,7 @@ export default {
       this.$router.push("Detail");
     },
     downloadAll(picUrlList) {
-      let result = backend.downloadAll(picUrlList);
+      let result = backend.downloadAll(picUrlList, this.$store.state.savePath);
       if (result) {
         this.isDialogShow = true;
       }

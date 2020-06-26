@@ -18,7 +18,7 @@
             class="white--text align-end"
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="700"
-            @click="download(currentPicture[i-1])"
+            @click="download(currentPicture[i-1],i)"
           ></v-img>
         </a>
       </v-card>
@@ -35,8 +35,13 @@ export default {
     };
   },
   methods: {
-    download(picUrl) {
-      let result = backend.download(picUrl);
+    download(picUrl, num) {
+      let result = backend.download(
+        picUrl,
+        this.$store.state.id,
+        num,
+        this.$store.state.savePath
+      );
       if (result) {
         this.isShow = true;
       }
