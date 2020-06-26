@@ -1,5 +1,15 @@
 <template>
   <div>
+    <v-dialog v-model="isDialogShow" max-width="290">
+      <v-card>
+        <v-card-title class="headline">成功</v-card-title>
+        <v-card-text>图集下载完成！</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="isDialogShow = false">Ok</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-row dense>
       <v-col v-for="item in pictureList" :key="item.entityId">
         <v-card width="344" class="mx-auto">
@@ -23,7 +33,7 @@
           <v-card-actions>
             <v-btn text color="deep-purple accent-4" @click="getDetail(item)">详情</v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon @click="downloadAll(item)">
+            <v-btn icon @click="downloadAll(item.picArr)">
               <v-icon>mdi-download</v-icon>
             </v-btn>
           </v-card-actions>
@@ -41,7 +51,8 @@ export default {
   data: () => {
     return {
       page: 1,
-      isShow: false
+      isShow: false,
+      isDialogShow: false
     };
   },
   methods: {
@@ -53,6 +64,12 @@ export default {
         id: item.id
       });
       this.$router.push("Detail");
+    },
+    downloadAll(picUrlList) {
+      let result = backend.downloadAll(picUrlList);
+      if (result) {
+        this.isDialogShow = true;
+      }
     }
   },
   computed: {
