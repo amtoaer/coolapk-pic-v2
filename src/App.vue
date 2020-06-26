@@ -10,7 +10,7 @@
       </v-btn>
       <v-toolbar-title>{{title}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon class="hidden-xs-only" @click="$router.push('config')">
+      <v-btn icon class="hidden-xs-only" @click="$router.push('Config')">
         <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>

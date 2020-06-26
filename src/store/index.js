@@ -9,11 +9,14 @@ export default new Vuex.Store({
     pictureList: [],
     currentPicture: '',
     savePath: '',
-    page: 0
+    id: ''
   },
   mutations: {
     setTitle(state, preload) {
       state.title = preload.title
+    },
+    setID(state, preload) {
+      state.id = preload.id
     },
     setPictureList(state, payload) {
       state.pictureList = []

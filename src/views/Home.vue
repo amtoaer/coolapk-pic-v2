@@ -12,12 +12,18 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-img v-bind:src="item.pic" height="600"></v-img>
+          <v-img v-bind:src="item.pic" height="600">
+            <template v-slot:placeholder>
+              <v-row class="fill-height ma-0" align="center" justify="center">
+                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+              </v-row>
+            </template>
+          </v-img>
 
           <v-card-actions>
-            <v-btn text color="deep-purple accent-4">详情</v-btn>
+            <v-btn text color="deep-purple accent-4" @click="getDetail(item)">详情</v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon>
+            <v-btn icon @click="downloadAll(item)">
               <v-icon>mdi-download</v-icon>
             </v-btn>
           </v-card-actions>
@@ -25,7 +31,7 @@
       </v-col>
     </v-row>
     <div align="center">
-      <v-pagination v-model="page" :length="100" :total-visible="7"></v-pagination>
+      <v-pagination v-model="page" :length="100" :total-visible="7" v-show="isShow"></v-pagination>
     </div>
   </div>
 </template>
@@ -34,8 +40,20 @@ import backend from "../backend";
 export default {
   data: () => {
     return {
-      page: 1
+      page: 1,
+      isShow: false
     };
+  },
+  methods: {
+    getDetail(item) {
+      this.$store.commit("setCurrentPicture", {
+        currentPicture: item
+      });
+      this.$store.commit("setID", {
+        id: item.id
+      });
+      this.$router.push("Detail");
+    }
   },
   computed: {
     pictureList() {
@@ -63,6 +81,7 @@ export default {
       this.$store.commit("setPictureList", {
         pictureList: result
       });
+      this.isShow = true;
     }
   }
 };
