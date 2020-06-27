@@ -30,7 +30,7 @@ export default {
   name: "App",
   data() {
     return {
-      disableGoBack: false
+      disableGoBack: true
     };
   },
   computed: {
