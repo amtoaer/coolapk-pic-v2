@@ -47,7 +47,32 @@
      yarn electron:build
      ```
 
-2. 安装你所使用系统的预构建包（暂无）
+2. 在[该页面](https://github.com/amtoaer/coolapk-pic-v2/releases/)安装你所使用系统的预构建包
+
+   + `windows`
+
+     下载`coolapk-pic.Setup.version.exe`，双击安装并运行。
+
+   + `macOS`
+
+     没有用过，只是打了包，欢迎测试。
+
+   + `archlinux/manjaro`
+
+     下载`coolapk-pic-version.pacman`，通过以下命令进行安装：
+
+     ```bash
+     sudo pacman -U /path/to/coolapk-pic-version.pacman
+     ```
+
+   + `other linux distros`
+
+     下载`coolapk-pic-version.AppImage`，给予可执行权限并运行：
+
+     ```bash
+     sudo chmod +x /path/to/coolapk-pic-version.AppImage
+     /path/to/coolapk-pic-version.AppImage
+     ```
 
 ## 截图
 
