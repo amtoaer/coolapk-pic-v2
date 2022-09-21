@@ -17,7 +17,7 @@
     "request-promise": "^4.2.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuetify": "^2.2.11",
+    "vuetify": "^2.6.10",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
